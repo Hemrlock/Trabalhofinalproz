@@ -60,11 +60,7 @@ header.scrolled {
   position: relative;
 }
 
-/* Logo à esquerda */
-.logo {
-  flex: 1;
-}
-
+/* Logo (não está sendo usada, mas mantida) */
 .logo h1 {
   font-family: "League", sans-serif;
   font-size: 28px;
@@ -72,12 +68,14 @@ header.scrolled {
   letter-spacing: 2px;
 }
 
-/* Menu centralizado */
+/* Menu da Esquerda - Ajustado com flex: 1 para balancear o espaço */
 .menu-left {
   display: flex;
   gap: 20px;
   list-style: none;
-  margin: 0 auto; /* centraliza horizontalmente */
+  flex: 1; /* Ocupa 1/3 do espaço disponível */
+  margin: 0;
+  justify-content: flex-start; /* Alinha os links à esquerda */
 }
 
 .menu-left li a {
@@ -92,12 +90,24 @@ header.scrolled {
   color: #ff4655;
 }
 
-/* Ícones/botões à direita */
+/* Logo Centralizada */
+.logo {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* Ocupa o 1/3 central */
+}
+
+.logo img {
+  height: 75px; /* Reduzi o height para caber melhor na navbar */
+  width: auto;
+}
+
+/* Ícones/botões à direita - Ajustado com flex: 1 para balancear o espaço */
 .menu-right {
   display: flex;
   align-items: center;
   gap: 15px;
-  flex: 1;
+  flex: 1; /* Ocupa 1/3 do espaço disponível */
   justify-content: flex-end;
 }
 
@@ -159,4 +169,69 @@ header.scrolled {
 .btn-watch:hover {
   background: #fff;
   color: #000;
+}
+
+/* ======================================= */
+/* SEÇÃO GAME-INFO (Novo Conteúdo) */
+/* ======================================= */
+
+.game-info {
+  background: #0d0d0d; /* Fundo escuro para contraste */
+  padding: 100px 40px;
+  color: #ddd;
+  min-height: 100vh;
+}
+
+.game-info .container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.game-info h2 {
+    font-size: 48px;
+    margin-bottom: 40px;
+    color: #f0e6d2; /* Cor dourada clara */
+}
+
+.game-info h3 {
+    font-size: 32px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: #f0e6d2;
+}
+
+.game-info p, .game-info li {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* ======================================= */
+/* EFEITO REVEAL (Aparecer ao Rolar) */
+/* ======================================= */
+
+/* 1. Estado Inicial (Escondido) */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(20px); /* Desloca o elemento 20px para baixo */
+  /* Define a animação (duração e tipo) */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+  transition-delay: 0.2s; /* Pequeno delay inicial para o primeiro item */
+}
+
+/* 2. Estado Revelado (Visível) */
+/* Esta classe é adicionada via JavaScript */
+.reveal-item.active {
+  opacity: 1;
+  transform: translateY(0); /* Volta para a posição original */
+}
+
+.game-info .game-image {
+    display: block; /* Garante que a imagem ocupe sua própria linha */
+    width: 100%; /* Torna a imagem responsiva, ocupando toda a largura do container */
+    max-width: 800px; /* Limita o tamanho máximo, se desejar que ela não fique gigante em telas muito largas */
+    height: auto;
+    margin: 40px auto; /* Centraliza a imagem e dá margem superior/inferior */
+    border-radius: 8px; /* Opcional: bordas arredondadas */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Sombra suave para destacar */
 }

@@ -2,41 +2,116 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LEAGUE OF MINAS BR</title>
-  <link rel="stylesheet" href="indice.css">
-  <!-- Ícones (Font Awesome para simular Instagram, Twitter, Twitch e Carrinho) -->
-  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAGUE OF MINAS BR</title>
+    <link rel="stylesheet" href="indice.css">
+    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-        <!-- Vídeo de fundo -->
-      <video class="video-bg" autoplay muted loop>
+    <video class="video-bg" autoplay muted loop>
         <source src="./Imagens/videosite1.mov" type="video/mp4">
-        Seu navegador não suporta vídeo em background.
-      </video>
-  <header>
-    <nav class="navbar">
-      <ul class="menu-left">
-        <li><a href="./indice.html">Início</a></li>
-        <li><a href="#">Partidas</a></li>
-        <li><a href="./loja.html">Loja</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-      <div class="logo">
-      </div>
+    </video>
 
-      <div class="menu-right">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-twitch"></i></a>
-        <a href="#"><i class="fas fa-shopping-cart"></i> <span>0</span></a>
-        <a href="#" class="btn-live">Assistir Ao Vivo</a>
-      </div>
-    </nav>
-  </header>
+    <div class="overlay-bg"></div>
+
+    <header>
+        <nav class="navbar">
+            <ul class="menu-left">
+                <li><a href="./indice.html">Início</a></li>
+                <li><a href="#">Partidas</a></li>
+                <li><a href="./loja.html">Loja</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            <div class="logo">
+                <a href="./indice.html">
+                    <img src="./Imagens/logo.png" alt="Logo League of Minas" class="logo-img">
+                </a>
+            </div>
+
+            <div class="menu-right">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-twitch"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i> <span>0</span></a>
+                <a href="#" class="btn-live">Assistir Ao Vivo</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="overlay">
+        </div>
+    </section>
+
+    <section class="game-info">
+        <div class="container">
+            <h2 class="reveal-item">O mapa de Summoners Rift</h2>
+             <img 
+            src="./Imagens/mapalol.jpg"  alt="Mapa ou Imagem de Runeterra" 
+            class="reveal-item game-image"
+            style="transition-delay: 0.3s;"  >
+            <p class="reveal-item">
+                League of Legends é um jogo de estratégia 5v5 onde duas equipes
+                de campeões poderosos batalham para destruir o Nexus inimigo.
+                Escolha sua rota, domine suas habilidades e lidere seu time
+                à vitória em um universo em constante expansão e competitivo.
+            </p>
+
+            <div class="features">
+                 <h3 class="reveal-item">Descubra os Modos de Jogo</h3>
+                 <ul class="reveal-item" style="transition-delay: 0.4s;">
+                     <li>Summoner's Rift - O mapa 5v5 clássico.</li>
+                     <li>Aram (Howling Abyss) - Combate em uma única rota.</li>
+                     <li>Teamfight Tactics (TFT) - Batalha de estratégias automáticas.</li>
+                 </ul>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleciona todos os elementos que devem ser revelados
+            const revealElements = document.querySelectorAll('.reveal-item');
+
+            // Cria o observador
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Se o elemento estiver visível (intersecting)
+                    if (entry.isIntersecting) {
+                        // Adiciona a classe 'active' para iniciar a animação CSS
+                        entry.target.classList.add('active');
+                        
+                        // Para que a animação ocorra apenas uma vez
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Opções do observador
+                root: null, // Observa em relação à viewport do navegador
+                rootMargin: '0px',
+                // O elemento será considerado "visível" quando 20% dele estiver na tela
+                threshold: 0.2
+            });
+
+            // Aplica o observador a cada elemento
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // Script para a barra de navegação (já existente)
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>
